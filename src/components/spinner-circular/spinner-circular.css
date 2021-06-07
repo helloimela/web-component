@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+
+@keyframes spinner-circular {
+  from {
+    transform: rotate(0deg);
+  } to {
+    transform: rotate(360deg);
+  } 
+}
+ .spinner-circular- {
+  min-width: 40px;
+  min-height: 40px;
+  border:  0.25em solid #C5C6C9;
+  border-right:  0.25em solid #2058A8;
+  border-radius: 50%;
+  animation: spinner-circular  0.7s linear infinite;
+}
+.spinner-circular-sm {
+  min-width:20px;
+  min-height: 20px;
+  border: 0.2em solid #C5C6C9;
+  border-right: 0.2em solid #2058A8;
+  border-radius: 50%;
+/*   //-webkit-animation: spinner-linear 1s linear infinite; TODO::*/
+  animation: spinner-circular  0.7s linear infinite;
+} 
+.spinner-circular-md {
+  min-width: 40px;
+  min-height: 40px;
+  border:  0.25em solid #C5C6C9;
+  border-right:  0.25em solid #2058A8;
+  border-radius: 50%;
+  animation: spinner-circular  0.7s linear infinite;
+}
+

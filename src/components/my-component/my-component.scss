@@ -1,0 +1,168 @@
+:host {
+  display: block;
+}
+  ///////////////////////////////////LINEAR///////////////////////////////////
+$spinner-width:50px;
+$spinner-height:40px;
+$background-color:#2058A8;
+$number-rect:5;
+
+@mixin rect{
+  @for $variable from 1 through $number-rect {
+    .rect#{$variable}{
+      @extend %spinner-rect;
+      -webkit-animation-delay: (($variable / 10)) * 1s - 1.3s;
+      animation-delay: (($variable / 10)) * 1s- 1.3s
+    }
+  }
+}
+
+%spinner-rect{
+  background-color: $background-color;
+  height: 100%;
+  width: 12%;
+  margin-right: 2px;
+  display: inline-block;
+  -webkit-animation: spinner-linear 1.3s infinite ease-in-out;
+  animation: spinner-linear 1.3s infinite ease-in-out;
+}
+
+.spinner-linear, .spinner-linear-md{
+    width:$spinner-width;
+    height: $spinner-height;
+    @include rect;
+
+    &.spinner-linear-sm{
+      width:$spinner-width / 2;
+      height:$spinner-height / 2;
+    }  
+  }
+  
+  @-webkit-keyframes spinner-linear {
+    0%, 40%, 100% {
+      -webkit-transform: scaleY(0.4)
+    }
+    20% {
+      -webkit-transform: scaleY(1)
+    }
+  }
+  
+  @keyframes spinner-linear {
+    0%, 40%, 100% {
+      transform: scaleY(0.4);
+      -webkit-transform: scaleY(0.4);
+    } 
+    20% {
+      transform: scaleY(1);
+      -webkit-transform: scaleY(1)
+    }
+  
+  }
+  
+  ///////////////////////////////////CIRCULAR///////////////////////////////////
+$circular-length:40px;
+$border-color:#C5C6C9;
+
+%spinner-circular{
+  min-width:  $circular-length;
+  min-height:  $circular-length;
+  border:  0.25em solid   $border-color;
+  border-right:  0.25em solid $background-color;
+  border-radius: 50%;
+  -webkit-animation: spinner-circular  0.6s linear infinite;
+  animation: spinner-circular  0.6s linear infinite;
+}
+.spinner-circular , .spinner-circular-md{
+  @extend %spinner-circular;
+  &.spinner-circular-sm {
+    min-width:  $circular-length / 2;
+    min-height:   $circular-length / 2;
+    border:  0.2em solid $border-color;
+    border-right:  0.2em solid $background-color;
+  } 
+  
+}
+
+@-webkit-keyframes spinner-circular {
+  from {
+    -webkit-transform: rotate(0deg);
+  } to {
+    -webkit-transform: rotate(360deg);
+  } 
+}
+@keyframes spinner-circular {
+  from {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  } to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  } 
+}
+
+  ///////////////////////////////////CUBIC///////////////////////////////////
+$cubic-length:40px;
+
+%spinner-cube {
+	width: 33%; 
+	height: 33%; 
+	background-color:$background-color; 
+	float: left; 
+	-webkit-animation: spinner 1.3s infinite ease-in-out; 
+	animation: spinner 1.3s infinite ease-in-out; 
+}
+
+.spinner-cube, .spinner-cube-md{
+	width: $cubic-length;
+	height: $cubic-length; 
+
+  &.spinner-cube-sm {
+    width: $cubic-length / 2;
+    height:$cubic-length / 2;    
+  } 
+}
+
+.cube1,  .cube5, .cube9{
+  @extend %spinner-cube;
+	-webkit-animation-delay: 0.2s; 
+	animation-delay: 0.2s; }
+.cube2, .cube6 {
+  @extend %spinner-cube;
+	-webkit-animation-delay: 0.3s; 
+	animation-delay: 0.3s; 
+}
+.cube4, .cube8{
+  @extend %spinner-cube;
+	-webkit-animation-delay: 0.1s; 
+	animation-delay: 0.1s; 
+}
+.cube3 {
+  @extend %spinner-cube;
+	-webkit-animation-delay: 0.4s; 
+	animation-delay: 0.4s; 
+}
+.cube7 {
+  @extend %spinner-cube;
+	-webkit-animation-delay: 0s; 
+	animation-delay: 0s; 
+}
+
+@-webkit-keyframes spinner {
+	0%, 70%, 100% {
+		-webkit-transform: scale(1, 1); 
+		transform: scale(1, 1); 
+	} 35% {
+		-webkit-transform: scale(0, 0); 
+		transform: scale(0, 0); 
+	}
+}
+
+@keyframes spinner {
+	0%, 70%, 100% {
+		-webkit-transform: scale(1, 1); 
+		transform: scale(1, 1);
+	} 35% {
+		-webkit-transform: scale(0, 0); 
+		transform: scale(0, 0); 
+	}
+}
