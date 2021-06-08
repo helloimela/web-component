@@ -1,4 +1,4 @@
-import { Component, h,Prop } from '@stencil/core';
+import { Component, h,Prop, State } from '@stencil/core';
 
 @Component({
     tag: 'sdds-spinner',
@@ -9,56 +9,28 @@ import { Component, h,Prop } from '@stencil/core';
   export class Spinner{
     @Prop() size = "";
     @Prop() type = "";
-    
-private linearSpinner(){
-  return (
-    <div class={`spinner-linear spinner-linear-${this.size == 'sm' || this.size == 'md' ? this.size : ''} `}>
-            <div class="rect1"></div>
-            <div class="rect2"></div>
-            <div class="rect3"></div>
-            <div class="rect4"></div>
-            <div class="rect5"></div>
-        </div>  
-  );
 
-}
-private circularSpinner(){
-  return(
-    <div class={`spinner-circular spinner-circular-${this.size == 'sm'  || this.size == 'md'? this.size : ''} `}></div>          
-  )
-}
-private cubicSpinner(){
-  return (
-   
-    <div class={`spinner-cube spinner-cube-${this.size == 'sm' || this.size == 'md' ? this.size : ''} `}>
-       <div class="cube1"></div>
-       <div class="cube2"></div> 
-       <div class="cube3"></div>
-       <div class="cube4"></div>
-       <div class="cube5"></div>
-       <div class="cube6"></div>
-       <div class="cube7"></div>
-       <div class="cube8"></div>
-       <div class="cube9"></div>
-   </div>
-   
- );
+    @State() cubes = 9;
+    @State() rects = 5;
 
-}
-    render() {
-      switch(this.type){
-
-        case "linear":
-              return this.linearSpinner();
-             
-        case "circular":
-          return this.circularSpinner();
-              
-        case "cubic":
-             return this.cubicSpinner();  
-              
-        default: return this.circularSpinner();
-          
+    renderElements(num, className){
+      const elems = [];
+      for(let i=1; i <= num; i++){
+        elems.push(<div class={ className + i}></div>);
       }
+      return elems;
+    }
+    
+    render() {
+      return(
+        <div class={`spinner-${this.type} spinner-${this.type}-${this.size == 'sm' || this.size == 'md' ? this.size : ''} `}>
+        {
+          this.type === 'cube' && this.renderElements(this.cubes, 'cube')
+        }
+        {
+          this.type === 'linear' && this.renderElements(this.rects, 'rect')
+        }
+      </div>
+      )
     }
   }

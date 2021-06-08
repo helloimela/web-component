@@ -14,7 +14,7 @@ export default {
     type: {
       control: {
         type: 'select',
-        options:['default', 'circular','cubic', 'linear']
+        options:['default', 'circular','cube', 'linear']
       },
       defaultValue: 'default',
       description: 'Size of the button'
@@ -37,6 +37,7 @@ const style =`<style>
 }
 </style>`;
 const Template = ({size,type}) => {
+  type = type === 'default' ? 'circular' : type;
   let sizeValue='';
   switch (size) {
     case 'small':
